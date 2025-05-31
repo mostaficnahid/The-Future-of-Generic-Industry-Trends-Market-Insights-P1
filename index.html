@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-KBA">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Industry Trends & Market Research Infographic</title>
+   <script src="https://cdn.tailwindcss.com"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <style>
+       body {
+           font-family: 'Inter', sans-serif;
+       }
+       .chart-container {
+           position: relative;
+           width: 100%;
+           max-width: 600px;
+           margin-left: auto;
+           margin-right: auto;
+       }
+       .section-title {
+           font-size: 1.875rem;
+           font-weight: 700;
+           margin-bottom: 1.5rem;
+           text-align: center;
+       }
+       .card {
+           background-color: white;
+           border-radius: 0.5rem;
+           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+           padding: 1.5rem;
+           margin-bottom: 1.5rem;
+       }
+       .kpi-value {
+           font-size: 3rem;
+           font-weight: 800;
+       }
+       .kpi-label {
+           font-size: 1rem;
+           color: #4B5563;
+       }
+       .flowchart-node {
+           border: 2px solid;
+           padding: 0.75rem;
+           border-radius: 0.375rem;
+           text-align: center;
+           min-width: 120px;
+       }
+       .flowchart-arrow {
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           padding: 0 0.5rem;
+       }
+       .flowchart-arrow::after {
+           content: '→';
+           font-size: 1.5rem;
+       }
+       .gemini-btn {
+           display: inline-block;
+           padding: 0.5rem 1rem;
+           margin-top: 0.5rem;
+           font-size: 0.875rem;
+           font-weight: 500;
+           color: white;
+           background-color: #0891B2; /* Tailwind cyan-600 */
+           border-radius: 0.375rem;
+           cursor: pointer;
+           transition: background-color 0.3s ease;
+       }
+       .gemini-btn:hover {
+           background-color: #0E7490; /* Tailwind cyan-700 */
+       }
+       .gemini-output {
+           margin-top: 1rem;
+           padding: 0.75rem;
+           background-color: #F9FAFB; /* Tailwind gray-50 */
+           border-left: 4px solid #06B6D4; /* Tailwind cyan-500 */
+           font-size: 0.875rem;
+           color: #374151; /* Tailwind gray-700 */
+           border-radius: 0.25rem;
+           white-space: pre-wrap; /* Preserve formatting from API */
+       }
+       .loading-spinner {
+           border: 4px solid #f3f3f3; /* Light grey */
+           border-top: 4px solid #06B6D4; /* Cyan */
+           border-radius: 50%;
+           width: 24px;
+           height: 24px;
+           animation: spin 1s linear infinite;
+           margin: 0.5rem auto;
+       }
+       @keyframes spin {
+           0% { transform: rotate(0deg); }
+           100% { transform: rotate(360deg); }
+       }
+   </style>
+   </head>
+<body class="bg-gray-100 text-gray-800">
+
+
+   <header class="bg-cyan-600 text-white p-8 text-center">
+       <h1 class="text-4xl md:text-5xl font-bold mb-4">The Future of [Generic Industry]: Trends & Market Insights</h1>
+       <p class="text-lg md:text-xl max-w-3xl mx-auto">
+           An in-depth look into the current market landscape, emerging trends, competitive dynamics, and future opportunities shaping the [Generic Industry] sector. (Content from Deep Research Report)
+       </p>
+   </header>
+
+
+   <main class="container mx-auto p-4 md:p-8">
+
+
+       <section id="market-overview" class="mb-12">
+           <h2 class="section-title text-cyan-700">Market Overview</h2>
+           <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+               Understanding the foundational metrics of the [Generic Industry] market, including its current valuation, historical growth, and segmentation. This section provides a snapshot of the market's scale and composition. (Context from Deep Research Report)
+           </p>
+           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+               <div class="card text-center">
+                   <h3 class="text-2xl font-semibold mb-2 text-orange-600">Current Market Size</h3>
+                   <p class="kpi-value text-cyan-500">$[12.4] Billion</p>
+                   <p class="kpi-label">(As of 2024 - Placeholder Data)</p>
+                   <p class="mt-2 text-sm text-gray-500">This figure represents the total market valuation, indicating the industry's significant economic footprint. (Insight from Deep Research Report)</p>
+               </div>
+               <div class="card">
+                   <h3 class="text-xl font-semibold mb-3 text-center text-orange-600">Historical Market Growth (USD Billion)</h3>
+                   <div class="chart-container h-64 md:h-80">
+                       <canvas id="marketGrowthChart"></canvas>
+                   </div>
+                   <p class="mt-2 text-sm text-center text-gray-500">Illustrates the market's growth trajectory over the past five years, highlighting key expansion periods. (Insight from Deep Research Report)</p>
+               </div>
+               <div class="card md:col-span-2">
+                    <h3 class="text-xl font-semibold mb-3 text-center text-orange-600">Key Market Segments (2024)</h3>
+                   <div class="chart-container h-72 md:h-96 max-w-md">
+                       <canvas id="marketSegmentsChart"></canvas>
+                   </div>
+                   <p class="mt-2 text-sm text-center text-gray-500">Breakdown of the market by its major segments, showing relative contributions to the total market value. (Insight from Deep Research Report)</p>
+               </div>
+           </div>
+       </section>
+
+
+       <section id="key-trends" class="mb-12">
+           <h2 class="section-title text-cyan-700">Key Trends & Technology Adoption</h2>
+           <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+               Exploring the pivotal trends driving change within the [Generic Industry] and the rate at which new technologies are being adopted by businesses and consumers. (Context from Deep Research Report)
+           </p>
+           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+               <div class="card">
+                   <h3 class="text-xl font-semibold mb-3 text-center text-orange-600">Technology Adoption Rates (%)</h3>
+                   <div class="chart-container h-80 md:h-96">
+                       <canvas id="techAdoptionChart"></canvas>
+                   </div>
+                   <p class="mt-2 text-sm text-center text-gray-500">Comparison of adoption levels for key technologies, indicating areas of rapid uptake and those with future growth potential. (Insight from Deep Research Report)</p>
+               </div>
+               <div class="card">
+                   <h3 class="text-xl font-semibold mb-3 text-center text-orange-600">Top Emerging Trends</h3>
+                   <ul class="space-y-3">
+                       <li class="p-3 bg-cyan-50 rounded-md shadow-sm">
+                           <strong class="text-cyan-700" id="trend1-title">Trend 1: AI & Automation:</strong> <span id="trend1-desc">Description of how AI is reshaping processes and efficiency. (Data from Report)</span>
+                           <button class="gemini-btn" onclick="fetchGeminiTrendInsight('trend1')">✨ Elaborate on this Trend</button>
+                           <div id="trend1-loading" class="hidden"><div class="loading-spinner"></div></div>
+                           <div id="trend1-output" class="gemini-output hidden"></div>
+                       </li>
+                       <li class="p-3 bg-orange-50 rounded-md shadow-sm">
+                           <strong class="text-orange-700" id="trend2-title">Trend 2: Sustainability Focus:</strong> <span id="trend2-desc">Growing importance of eco-friendly practices and products. (Data from Report)</span>
+                           <button class="gemini-btn" onclick="fetchGeminiTrendInsight('trend2')">✨ Elaborate on this Trend</button>
+                           <div id="trend2-loading" class="hidden"><div class="loading-spinner"></div></div>
+                           <div id="trend2-output" class="gemini-output hidden"></div>
+                       </li>
+                       <li class="p-3 bg-amber-50 rounded-md shadow-sm">
+                           <strong class="text-amber-700" id="trend3-title">Trend 3: Personalization at Scale:</strong> <span id="trend3-desc">Demand for tailored experiences and solutions. (Data from Report)</span>
+                           <button class="gemini-btn" onclick="fetchGeminiTrendInsight('trend3')">✨ Elaborate on this Trend</button>
+                           <div id="trend3-loading" class="hidden"><div class="loading-spinner"></div></div>
+                           <div id="trend3-output" class="gemini-output hidden"></div>
+                       </li>
+                        <li class="p-3 bg-cyan-50 rounded-md shadow-sm">
+                           <strong class="text-cyan-700" id="trend4-title">Trend 4: Data-Driven Decision Making:</strong> <span id="trend4-desc">Increased reliance on analytics for strategic choices. (Data from Report)</span>
+                           <button class="gemini-btn" onclick="fetchGeminiTrendInsight('trend4')">✨ Elaborate on this Trend</button>
+                           <div id="trend4-loading" class="hidden"><div class="loading-spinner"></div></div>
+                           <div id="trend4-output" class="gemini-output hidden"></div>
+                       </li>
+                   </ul>
+                   <p class="mt-3 text-sm text-center text-gray-500">Highlighting the most impactful trends currently shaping the industry's future direction. (Insight from Deep Research Report)</p>
+               </div>
+           </div>
+       </section>
+
+
+       <section id="competitive-landscape" class="mb-12">
+           <h2 class="section-title text-cyan-700">Competitive Landscape</h2>
+           <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+               An analysis of the competitive environment, including market share distribution among key players and their strategic positioning. (Context from Deep Research Report)
+           </p>
+           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+               <div class="card">
+                   <h3 class="text-xl font-semibold mb-3 text-center text-orange-600">Market Share Distribution (2024)</h3>
+                   <div class="chart-container h-72 md:h-96 max-w-md">
+                       <canvas id="marketShareChart"></canvas>
+                   </div>
+                   <p class="mt-2 text-sm text-center text-gray-500">Visual representation of how the market is divided among leading companies and other players. (Insight from Deep Research Report)</p>
+               </div>
+               <div class="card">
+                   <h3 class="text-xl font-semibold mb-3 text-center text-orange-600">Key Player Positioning (Simplified SWOT)</h3>
+                   <div class="overflow-x-auto">
+                       <table class="w-full text-sm text-left text-gray-500">
+                           <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                               <tr>
+                                   <th scope="col" class="px-6 py-3">Player</th>
+                                   <th scope="col" class="px-6 py-3">Strengths</th>
+                                   <th scope="col" class="px-6 py-3">Opportunities</th>
+                                   <th scope="col" class="px-6 py-3">AI Analysis</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <tr class="bg-white border-b">
+                                   <td class="px-6 py-4 font-medium text-gray-900" id="playerAlpha-name">Company Alpha</td>
+                                   <td class="px-6 py-4" id="playerAlpha-strength">Strong brand, innovation. (From Report)</td>
+                                   <td class="px-6 py-4" id="playerAlpha-opportunity">Market expansion, new tech. (From Report)</td>
+                                   <td class="px-6 py-4">
+                                       <button class="gemini-btn" onclick="fetchGeminiPlayerAnalysis('playerAlpha')">✨ Analyze Strategy Snippet</button>
+                                       <div id="playerAlpha-loading" class="hidden"><div class="loading-spinner"></div></div>
+                                       <div id="playerAlpha-output" class="gemini-output hidden"></div>
+                                   </td>
+                               </tr>
+                               <tr class="bg-gray-50 border-b">
+                                   <td class="px-6 py-4 font-medium text-gray-900" id="playerBeta-name">Company Beta</td>
+                                   <td class="px-6 py-4" id="playerBeta-strength">Large customer base, cost efficiency. (From Report)</td>
+                                   <td class="px-6 py-4" id="playerBeta-opportunity">Partnerships, emerging markets. (From Report)</td>
+                                   <td class="px-6 py-4">
+                                       <button class="gemini-btn" onclick="fetchGeminiPlayerAnalysis('playerBeta')">✨ Analyze Strategy Snippet</button>
+                                       <div id="playerBeta-loading" class="hidden"><div class="loading-spinner"></div></div>
+                                       <div id="playerBeta-output" class="gemini-output hidden"></div>
+                                   </td>
+                               </tr>
+                               <tr class="bg-white">
+                                   <td class="px-6 py-4 font-medium text-gray-900" id="playerGamma-name">Company Gamma</td>
+                                   <td class="px-6 py-4" id="playerGamma-strength">Agile, niche focus. (From Report)</td>
+                                   <td class="px-6 py-4" id="playerGamma-opportunity">Disruptive innovation, service diversification. (From Report)</td>
+                                   <td class="px-6 py-4">
+                                       <button class="gemini-btn" onclick="fetchGeminiPlayerAnalysis('playerGamma')">✨ Analyze Strategy Snippet</button>
+                                       <div id="playerGamma-loading" class="hidden"><div class="loading-spinner"></div></div>
+                                       <div id="playerGamma-output" class="gemini-output hidden"></div>
+                                   </td>
+                               </tr>
+                           </tbody>
+                       </table>
+                   </div>
+                   <p class="mt-2 text-sm text-center text-gray-500">A simplified overview of major competitors' strengths and potential growth areas, with AI-powered strategic snippets. (Insight from Deep Research Report)</p>
+               </div>
+           </div>
+       </section>
+
+
+       <section id="consumer-insights" class="mb-12">
+           <h2 class="section-title text-cyan-700">Consumer Insights</h2>
+           <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+               Delving into consumer demographics, preferences, and behaviors that influence market demand and product development in the [Generic Industry]. (Context from Deep Research Report)
+           </p>
+           <div class="card">
+               <h3 class="text-xl font-semibold mb-3 text-center text-orange-600">Consumer Demographics by Key Segment (%)</h3>
+               <div class="chart-container h-80 md:h-[450px]">
+                   <canvas id="consumerDemographicsChart"></canvas>
+               </div>
+               <p class="mt-2 text-sm text-center text-gray-500">Breakdown of consumer groups within key market segments, showing varied demographic profiles. (Insight from Deep Research Report)</p>
+           </div>
+       </section>
+      
+       <section id="future-outlook" class="mb-12">
+           <h2 class="section-title text-cyan-700">Future Outlook & Opportunities</h2>
+           <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+               Projecting the future trajectory of the [Generic Industry], highlighting expected growth patterns, and identifying key opportunities for stakeholders. (Context from Deep Research Report)
+           </p>
+           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+               <div class="card">
+                   <h3 class="text-xl font-semibold mb-3 text-center text-orange-600">Market Growth Projections (Next 5 Years, USD Billion)</h3>
+                    <div class="chart-container h-80 md:h-96">
+                       <canvas id="growthProjectionsChart"></canvas>
+                   </div>
+                   <p class="mt-2 text-sm text-center text-gray-500">Forecasted market expansion, indicating potential size and areas of accelerated growth. (Insight from Deep Research Report)</p>
+               </div>
+                <div class="card">
+                   <h3 class="text-xl font-semibold mb-3 text-center text-orange-600">Key Growth Opportunities</h3>
+                   <ul class="space-y-3">
+                       <li class="p-3 bg-cyan-50 rounded-md shadow-sm">
+                           <strong class="text-cyan-700" id="opp1-title">Opportunity 1: Untapped Geographic Markets.</strong> <span id="opp1-desc">(Details from Report)</span>
+                           <button class="gemini-btn" onclick="fetchGeminiOpportunityInsight('opp1')">✨ Explore this Opportunity</button>
+                           <div id="opp1-loading" class="hidden"><div class="loading-spinner"></div></div>
+                           <div id="opp1-output" class="gemini-output hidden"></div>
+                       </li>
+                       <li class="p-3 bg-orange-50 rounded-md shadow-sm">
+                           <strong class="text-orange-700" id="opp2-title">Opportunity 2: Innovative Product/Service Niches.</strong> <span id="opp2-desc">(Details from Report)</span>
+                           <button class="gemini-btn" onclick="fetchGeminiOpportunityInsight('opp2')">✨ Explore this Opportunity</button>
+                           <div id="opp2-loading" class="hidden"><div class="loading-spinner"></div></div>
+                           <div id="opp2-output" class="gemini-output hidden"></div>
+                       </li>
+                       <li class="p-3 bg-amber-50 rounded-md shadow-sm">
+                           <strong class="text-amber-700" id="opp3-title">Opportunity 3: Strategic Alliances & Partnerships.</strong> <span id="opp3-desc">(Details from Report)</span>
+                           <button class="gemini-btn" onclick="fetchGeminiOpportunityInsight('opp3')">✨ Explore this Opportunity</button>
+                           <div id="opp3-loading" class="hidden"><div class="loading-spinner"></div></div>
+                           <div id="opp3-output" class="gemini-output hidden"></div>
+                       </li>
+                   </ul>
+                   <p class="mt-3 text-sm text-center text-gray-500">Identifying promising avenues for future investment and development within the industry, with AI-powered exploration. (Insight from Deep Research Report)</p>
+               </div>
+           </div>
+       </section>
+
+
+       <section id="ai-snapshot" class="mb-12">
+           <h2 class="section-title text-cyan-700">AI-Powered Market Snapshot</h2>
+           <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+               Leverage generative AI to get a dynamic summary of the current market landscape based on key data points. (This is a conceptual feature, customize prompt with actual data).
+           </p>
+           <div class="card text-center">
+               <button class="gemini-btn text-lg py-3 px-6" onclick="fetchGeminiMarketSnapshot()">✨ Generate Market Snapshot</button>
+               <div id="snapshot-loading" class="hidden mt-4"><div class="loading-spinner"></div></div>
+               <div id="snapshot-output" class="gemini-output hidden text-left"></div>
+           </div>
+       </section>
+
+
+       <section id="process-flow" class="mb-12">
+           <h2 class="section-title text-cyan-700">Simplified Value Chain / Process Flow</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+               Illustrating a typical process or value chain within the [Generic Industry], from conception to delivery. This diagram is built with HTML and Tailwind CSS. (Context from Deep Research Report)
+           </p>
+           <div class="card">
+               <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                   <div class="flowchart-node border-cyan-500 text-cyan-700 bg-cyan-50">Step 1: Research & Development</div>
+                   <div class="flowchart-arrow text-cyan-500 hidden md:flex"></div>
+                   <div class="flowchart-node border-orange-500 text-orange-700 bg-orange-50">Step 2: Sourcing & Manufacturing</div>
+                   <div class="flowchart-arrow text-orange-500 hidden md:flex"></div>
+                   <div class="flowchart-node border-amber-500 text-amber-700 bg-amber-50">Step 3: Distribution & Logistics</div>
+                   <div class="flowchart-arrow text-amber-500 hidden md:flex"></div>
+                   <div class="flowchart-node border-green-500 text-green-700 bg-green-50">Step 4: Marketing & Sales</div>
+                   <div class="flowchart-arrow text-green-500 hidden md:flex"></div>
+                   <div class="flowchart-node border-purple-500 text-purple-700 bg-purple-50">Step 5: Customer Service & Feedback</div>
+               </div>
+               <p class="mt-4 text-sm text-center text-gray-500">This flow shows the interconnected stages that bring products/services to market. (Insight from Deep Research Report)</p>
+           </div>
+       </section>
+
+
+   </main>
+
+
+   <footer class="bg-gray-800 text-white p-8 text-center">
+       <p class="mb-2">&copy; 2025 [Your Company/Source Name]. All Rights Reserved.</p>
+       <p class="text-sm text-gray-400">
+           This infographic is based on data from the "Deep Research Report on [Generic Industry]". For detailed analysis, please refer to the full report.
+           <br> Note: All data presented is illustrative placeholder data. AI-generated content is for informational purposes and may require verification.
+       </p>
+   </footer>
+
+
+   <script>
+       const cyan500 = '#06B6D4';
+       const orange500 = '#F97316';
+       const amber500 = '#F59E0B';
+       const gray700 = '#374151';
+       const red500 = '#EF4444';
+       const green500 = '#22C55E';
+       const purple500 = '#A855F7';
+
+
+       function wrapLabels(labels, maxChars = 16) {
+           return labels.map(label => {
+               if (typeof label === 'string' && label.length > maxChars) {
+                   const words = label.split(' ');
+                   const lines = [];
+                   let currentLine = '';
+                   words.forEach(word => {
+                       if ((currentLine + word).length > maxChars && currentLine.length > 0) {
+                           lines.push(currentLine.trim());
+                           currentLine = word + ' ';
+                       } else {
+                           currentLine += word + ' ';
+                       }
+                   });
+                   lines.push(currentLine.trim());
+                   return lines;
+               }
+               return label;
+           });
+       }
+      
+       const commonTooltipCallbacks = {
+           title: function(tooltipItems) {
+               const item = tooltipItems[0];
+               let label = item.chart.data.labels[item.dataIndex];
+               if (Array.isArray(label)) {
+                 return label.join(' ');
+               } else {
+                 return label;
+               }
+           }
+       };
+
+
+       const marketGrowthCtx = document.getElementById('marketGrowthChart').getContext('2d');
+       const marketGrowthLabels = ['2020', '2021', '2022', '2023', '2024'];
+       new Chart(marketGrowthCtx, {
+           type: 'line',
+           data: {
+               labels: marketGrowthLabels,
+               datasets: [{
+                   label: 'Market Size (USD Billion)',
+                   data: [6.5, 7.2, 8.1, 9.0, 10.5],
+                   borderColor: cyan500,
+                   backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                   fill: true,
+                   tension: 0.1
+               }]
+           },
+           options: {
+               responsive: true,
+               maintainAspectRatio: false,
+               scales: { y: { beginAtZero: true, title: { display: true, text: 'USD Billion'} } },
+               plugins: { legend: { display: true }, tooltip: { callbacks: commonTooltipCallbacks } }
+           }
+       });
+
+
+       const marketSegmentsCtx = document.getElementById('marketSegmentsChart').getContext('2d');
+       const marketSegmentRawLabels = ['Segment Alpha One', 'Segment Beta Two Longer Name', 'Segment Gamma Three', 'Other Minor Segments Combined'];
+       new Chart(marketSegmentsCtx, {
+           type: 'doughnut',
+           data: {
+               labels: wrapLabels(marketSegmentRawLabels, 16),
+               datasets: [{
+                   label: 'Market Share',
+                   data: [40, 25, 20, 15],
+                   backgroundColor: [cyan500, orange500, amber500, gray700],
+                   hoverOffset: 4
+               }]
+           },
+           options: {
+               responsive: true,
+               maintainAspectRatio: false,
+               plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: commonTooltipCallbacks } }
+           }
+       });
+
+
+       const techAdoptionCtx = document.getElementById('techAdoptionChart').getContext('2d');
+       const techAdoptionRawLabels = ['Cloud Computing Solutions', 'Artificial Intelligence (AI)', 'Internet of Things (IoT) Devices', 'Big Data Analytics Platforms', 'Blockchain Technology Systems'];
+       new Chart(techAdoptionCtx, {
+           type: 'bar',
+           data: {
+               labels: wrapLabels(techAdoptionRawLabels, 16),
+               datasets: [{
+                   label: 'Adoption Rate (%)',
+                   data: [75, 45, 60, 55, 20],
+                   backgroundColor: [cyan500, orange500, amber500, green500, purple500],
+               }]
+           },
+           options: {
+               responsive: true,
+               maintainAspectRatio: false,
+               indexAxis: 'y',
+               scales: { x: { beginAtZero: true, max: 100, title: { display: true, text: 'Adoption Rate (%)'} } },
+               plugins: { legend: { display: false }, tooltip: { callbacks: commonTooltipCallbacks } }
+           }
+       });
+      
+       const marketShareCtx = document.getElementById('marketShareChart').getContext('2d');
+       const marketShareRawLabels = ['Company Alpha Inc.', 'Company Beta Group', 'Company Gamma Solutions', 'Other Competitors Grouped'];
+       new Chart(marketShareCtx, {
+           type: 'pie',
+           data: {
+               labels: wrapLabels(marketShareRawLabels, 16),
+               datasets: [{
+                   label: 'Market Share by Company',
+                   data: [35, 28, 22, 15],
+                   backgroundColor: [cyan500, orange500, amber500, gray700],
+                   hoverOffset: 4
+               }]
+           },
+           options: {
+               responsive: true,
+               maintainAspectRatio: false,
+               plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: commonTooltipCallbacks } }
+           }
+       });
+
+
+       const consumerDemographicsCtx = document.getElementById('consumerDemographicsChart').getContext('2d');
+       const consumerDemoRawLabels = ['Key Product Segment A', 'Key Product Segment B', 'Key Product Segment C'];
+       new Chart(consumerDemographicsCtx, {
+           type: 'bar',
+           data: {
+               labels: wrapLabels(consumerDemoRawLabels, 16),
+               datasets: [
+                   { label: 'Age 18-34', data: [30, 45, 20], backgroundColor: cyan500, },
+                   { label: 'Age 35-54', data: [40, 30, 50], backgroundColor: orange500, },
+                   { label: 'Age 55+', data: [30, 25, 30], backgroundColor: amber500, }
+               ]
+           },
+           options: {
+               responsive: true,
+               maintainAspectRatio: false,
+               scales: {
+                   x: { stacked: true, title: {display: true, text: 'Product Segments'} },
+                   y: { stacked: true, beginAtZero: true, max: 100, title: {display: true, text: 'Percentage (%)'} }
+               },
+               plugins: { legend: { position: 'top' }, tooltip: { callbacks: commonTooltipCallbacks, mode: 'index', intersect: false } }
+           }
+       });
+
+
+       const growthProjectionsCtx = document.getElementById('growthProjectionsChart').getContext('2d');
+       const projectionYears = ['2025', '2026', '2027', '2028', '2029'];
+       new Chart(growthProjectionsCtx, {
+           type: 'line',
+           data: {
+               labels: projectionYears,
+               datasets: [{
+                   label: 'Projected Market Size (USD Billion)',
+                   data: [11.5, 13.0, 14.8, 16.5, 18.5],
+                   borderColor: orange500,
+                   backgroundColor: 'rgba(249, 115, 22, 0.2)',
+                   fill: true,
+                   tension: 0.2
+               }]
+           },
+           options: {
+               responsive: true,
+               maintainAspectRatio: false,
+               scales: { y: { beginAtZero: false, title: { display: true, text: 'Projected USD Billion'} } },
+               plugins: { legend: { display: true }, tooltip: { callbacks: commonTooltipCallbacks } }
+           }
+       });
+
+
+       async function callGeminiAPI(prompt) {
+           const apiKey = "";
+           const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+          
+           const payload = {
+               contents: [{ role: "user", parts: [{ text: prompt }] }]
+           };
+
+
+           try {
+               const response = await fetch(apiUrl, {
+                   method: 'POST',
+                   headers: { 'Content-Type': 'application/json' },
+                   body: JSON.stringify(payload)
+               });
+               if (!response.ok) {
+                   const errorData = await response.json();
+                   console.error("Gemini API Error:", errorData);
+                   return `Error: ${response.status} - ${errorData.error?.message || 'Failed to fetch data from Gemini API.'}`;
+               }
+               const result = await response.json();
+               if (result.candidates && result.candidates.length > 0 &&
+                   result.candidates[0].content && result.candidates[0].content.parts &&
+                   result.candidates[0].content.parts.length > 0) {
+                   return result.candidates[0].content.parts[0].text;
+               } else {
+                   console.error("Unexpected Gemini API response structure:", result);
+                   return "No content received from Gemini API or unexpected response structure.";
+               }
+           } catch (error) {
+               console.error("Error calling Gemini API:", error);
+               return "An error occurred while trying to contact the Gemini API.";
+           }
+       }
+
+
+       function showLoading(elementPrefix) {
+           document.getElementById(`${elementPrefix}-loading`).classList.remove('hidden');
+           document.getElementById(`${elementPrefix}-output`).classList.add('hidden');
+           document.getElementById(`${elementPrefix}-output`).textContent = '';
+       }
+
+
+       function hideLoading(elementPrefix) {
+           document.getElementById(`${elementPrefix}-loading`).classList.add('hidden');
+       }
+
+
+       function displayOutput(elementPrefix, text) {
+           const outputDiv = document.getElementById(`${elementPrefix}-output`);
+           outputDiv.textContent = text;
+           outputDiv.classList.remove('hidden');
+       }
+
+
+       async function fetchGeminiTrendInsight(trendId) {
+           showLoading(trendId);
+           const trendTitle = document.getElementById(`${trendId}-title`).innerText;
+           const trendDesc = document.getElementById(`${trendId}-desc`).innerText;
+           const prompt = `Provide a brief elaboration (2-3 sentences) on the emerging trend: "${trendTitle} - ${trendDesc}". Focus on its potential future impact or key considerations for businesses in the [Generic Industry].`;
+           const result = await callGeminiAPI(prompt);
+           hideLoading(trendId);
+           displayOutput(trendId, result);
+       }
+
+
+       async function fetchGeminiPlayerAnalysis(playerId) {
+           showLoading(playerId);
+           const playerName = document.getElementById(`${playerId}-name`).innerText;
+           const playerStrength = document.getElementById(`${playerId}-strength`).innerText;
+           const playerOpportunity = document.getElementById(`${playerId}-opportunity`).innerText;
+           const prompt = `For a company named "${playerName}" in the [Generic Industry], with stated strengths: "${playerStrength}" and opportunities: "${playerOpportunity}", provide a very brief (1-2 sentences) strategic insight or potential challenge.`;
+           const result = await callGeminiAPI(prompt);
+           hideLoading(playerId);
+           displayOutput(playerId, result);
+       }
+      
+       async function fetchGeminiOpportunityInsight(opportunityId) {
+           showLoading(opportunityId);
+           const opportunityTitle = document.getElementById(`${opportunityId}-title`).innerText;
+           const opportunityDesc = document.getElementById(`${opportunityId}-desc`).innerText;
+           const prompt = `Elaborate briefly (2-3 sentences) on the growth opportunity: "${opportunityTitle} - ${opportunityDesc}" for the [Generic Industry]. What are key first steps or potential challenges?`;
+           const result = await callGeminiAPI(prompt);
+           hideLoading(opportunityId);
+           displayOutput(opportunityId, result);
+       }
+
+
+       async function fetchGeminiMarketSnapshot() {
+           showLoading('snapshot');
+           const prompt = `Generate a concise market snapshot (3-4 sentences) for the [Genecric Industry]. Consider current size around $10 Billion, growing at 8% annually, key trends like AI adoption and sustainability, and major opportunities in new technologies and untapped markets. Provide a high-level summary.`;
+           const result = await callGeminiAPI(prompt);
+           hideLoading('snapshot');
+           displayOutput('snapshot', result);
+       }
+
+            
+   </script>
+</body>
+</html>
+
+
+
